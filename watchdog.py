@@ -17,7 +17,7 @@ class WatchDog(object):
         info = []
         refresh_stauts = False
         for d in data:
-            refresh_time, data_label, refresh_value = d['Time'], d['TagName'].strip('ZRL_ZRL.'), \
+            refresh_time, data_label, refresh_value = d['Time'].strip('.907'), d['TagName'].strip('ZRL_ZRL.'), \
                                                       d['Value']
             if data_label not in self.value.keys():
                 print u'%s的WatchDog启动' % data_label
@@ -28,7 +28,7 @@ class WatchDog(object):
                 self.value[data_label] = refresh_value
                 print u'已刷新：', refresh_time, data_label, refresh_value
                 refresh_stauts = True
-            info.append(' '.join([refresh_time.strip('.907'), data_label + ':', refresh_value.split('.')[0]]))
+            info.append(' '.join([refresh_time, data_label + ':', refresh_value.split('.')[0]]))
 
         text = '\n'.join(info)
         print '##################### %s ###################\n' % data[0]['Time'].strip('.907'), \
