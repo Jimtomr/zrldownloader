@@ -52,20 +52,20 @@ class WatchRobot(object):
                         (300.0 < present_timestamp - self.timestamp) and
                     (alarm_starttime < current_time < alarm_endtime)
         ):
-            if float(self.value[u'GX1排焦皮带排焦重量']) > 180.0:
-                subject = u'预警：GX1排焦皮带排焦重量达到' + self.value[u'GX1排焦皮带排焦重量'][0:6]
+            if float(self.value[u'GX1排焦皮带排焦重量']) > 195.0:
+                subject = u'预警：GX1排焦皮带排焦重量达到%s' % self.value[u'GX1排焦皮带排焦重量'][0:6]
                 self.chat.send(subject)
                 self.timestamp = present_timestamp
-            elif float(self.value[u'锅炉入口气体温度']) > 1000.0:
-                subject = u'预警：锅炉入口气体温度达到' + self.value[u'锅炉入口气体温度'][0:6]
+            if float(self.value[u'锅炉入口气体温度']) > 1000.0:
+                subject = u'预警：锅炉入口气体温度达到%s' % self.value[u'锅炉入口气体温度'][0:6]
                 self.chat.send(subject)
                 self.timestamp = present_timestamp
-            elif float(self.value[u'锅炉入口气体压力']) < -1.0:
-                subject = u'预警：锅炉入口气体压力达到' + self.value[u'锅炉入口气体压力'][0:6]
+            if float(self.value[u'锅炉入口气体压力']) < -1.0:
+                subject = u'预警：锅炉入口气体压力达到%s' % self.value[u'锅炉入口气体压力'][0:6]
                 self.chat.send(subject)
                 self.timestamp = present_timestamp
-            elif float(self.value[u'主蒸汽流量']) > 100.0:
-                subject = u'预警：主蒸汽流量达到' + self.value[u'主蒸汽流量'].split('.')[0:6]
+            if float(self.value[u'主蒸汽流量']) > 100.0:
+                subject = u'预警：主蒸汽流量达到%s' % self.value[u'主蒸汽流量'][0:6]
                 self.chat.send(subject)
                 self.timestamp = present_timestamp
         self.text = text
