@@ -34,38 +34,41 @@ class DailyDownloader(object):
         filename = date_str + device + '.xls'
         return filename
 
+
 class ManualDownloader(DailyDownloader):
     def __init__(self, locallist, device):
         super(ManualDownloader, self).__init__(locallist, device)
-        y, m, d = input('Input date like \'yyyy, m, d\': ')
+        y, m, d = input('Input date like \'yyyy, m, d\': ')  # 手动输入年月日
         self.date = datetime.date(y, m, d)
         self.url = self.makeurl(locallist)
         self.filename = self.makefilename(device)
 
+
 if __name__ == '__main__':
-    # CDQdownloader = DailyDownloader('SXGD_CDQ.txt', 'CDQ')
-    # CDQdownloader.download()
-    #
+    # 自动下载
+    CDQdownloader = DailyDownloader('SXGD_CDQ.txt', 'CDQ')
+    CDQdownloader.download()
+
+    Boilerdownloader = DailyDownloader('SXGD_Boiler.txt', 'Boiler')
+    Boilerdownloader.download()
+
+    Cyclonedownloader = DailyDownloader('SXGD_Cyclone.txt', 'Cyclone')
+    Cyclonedownloader.download()
+    # 自动绘图
     # maker = AutoMaker(CDQdownloader.filename, [1, 5, 9])
     # maker.draw()
-    #
-    # Boilerdownloader = DailyDownloader('SXGD_Boiler.txt', 'Boiler')
-    # Boilerdownloader.download()
     #
     # maker2 = AutoMaker(Boilerdownloader.filename, [1, 5, 9])
     # maker2.draw()
     #
-    # Cyclonedownloader = DailyDownloader('SXGD_Cyclone.txt', 'Cyclone')
-    # Cyclonedownloader.download()
-    #
     # maker3 = AutoMaker(Cyclonedownloader.filename, [1, 5, 9])
     # maker3.draw()
-
-    Cyclonedownloader = ManualDownloader('SXGD_Cyclone.txt', 'Cyclone')
-    Cyclonedownloader.download()
-
-    CDQdownloader = ManualDownloader('SXGD_CDQ.txt', 'CDQ')
-    CDQdownloader.download()
-
-    Boilerdownloader = ManualDownloader('SXGD_Boiler.txt', 'Boiler')
-    Boilerdownloader.download()
+    # 手动下载
+    # Cyclonedownloader = ManualDownloader('SXGD_Cyclone.txt', 'Cyclone')
+    # Cyclonedownloader.download()
+    #
+    # CDQdownloader = ManualDownloader('SXGD_CDQ.txt', 'CDQ')
+    # CDQdownloader.download()
+    #
+    # Boilerdownloader = ManualDownloader('SXGD_Boiler.txt', 'Boiler')
+    # Boilerdownloader.download()
