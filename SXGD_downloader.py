@@ -63,7 +63,7 @@ if __name__ == '__main__':
     #
     # maker3 = AutoMaker(Cyclonedownloader.filename, [1, 5, 9])
     # maker3.draw()
-    # 手动下载
+    # 手动指定日期后下载
     # Cyclonedownloader = ManualDownloader('SXGD_Cyclone.txt', 'Cyclone')
     # Cyclonedownloader.download()
     #
