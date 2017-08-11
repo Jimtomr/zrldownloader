@@ -12,8 +12,8 @@ class WatchDog(object):
         self.target_url = ''.join(line.strip('\n') for line in open('target_url.txt', 'r').readlines())
         self.value = {}
         self.timestamp = 0
-        self.bot = Bot(cache_path=True)
-        self.chat = ensure_one(self.bot.groups().search(u'预警测试'))
+        # self.bot = Bot(cache_path=True)
+        # self.chat = ensure_one(self.bot.groups().search(u'预警测试'))
 
     def monitor(self):
         target = urlopen(self.target_url).read()
@@ -52,13 +52,13 @@ class WatchDog(object):
                 sender.send()
                 self.timestamp = timenow
             elif float(self.value[u'主蒸汽流量']) > 100.0:
-                subject = u'G主蒸汽流量达到' + self.value[u'主蒸汽流量'].split('.')[0]
+                subject = u'主蒸汽流量达到' + self.value[u'主蒸汽流量'].split('.')[0]
                 sender = SendMail(subject, text)
                 sender.send()
                 self.timestamp = timenow
 
-            self.chat.send(text)
-            self.timestamp = timenow
+            # self.chat.send(text)
+            # self.timestamp = timenow
 
     def refresh(self):
         try:
