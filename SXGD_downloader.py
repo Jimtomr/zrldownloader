@@ -37,8 +37,9 @@ class DailyDownloader(object):
 
 class ManualDownloader(DailyDownloader):
     def __init__(self, locallist, device):
-        super(ManualDownloader, self).__init__(locallist, device)
-        y, m, d = input('Input date like \'yyyy, m, d\': ')  # 手动输入年月日
+        # super(ManualDownloader, self).__init__(locallist, device)
+        date_str = raw_input('Input date like \'yyyy, m, d\': ') # 手动输入年月日
+        y, m, d =[int(i) for i in date_str.split(',')]
         self.date = datetime.date(y, m, d)
         self.url = self.makeurl(locallist)
         self.filename = self.makefilename(device)
@@ -63,7 +64,7 @@ if __name__ == '__main__':
     #
     # maker3 = AutoMaker(Cyclonedownloader.filename, [1, 5, 9])
     # maker3.draw()
-    # 手动指定日期后下载
+    # 手动指定日期下载
     # Cyclonedownloader = ManualDownloader('SXGD_Cyclone.txt', 'Cyclone')
     # Cyclonedownloader.download()
     #
