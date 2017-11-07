@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding:utf-8 -*-
 import smtplib
+import logging
 import pandas as pd
 import numpy as np
 from io import BytesIO
@@ -56,6 +57,9 @@ class SendMail(object):
         return mail
 
     def send(self):
+        logging.basicConfig(filename='sendmail.log',
+                            format='%(asctime)s:%(levelname)s:%(message)s',
+                            level=logging.DEBUG)
         try:
             server = smtplib.SMTP(self.host, 25)
             # server.set_debuglevel(1)
@@ -64,11 +68,12 @@ class SendMail(object):
             server.quit()
             print u'%s，已发送邮件' % self.subject
         except Exception as e:
-            print u'邮件发送失败', e
+            print u'邮件发送失败，请查看log', e
+            logging.exception(u'邮件发送出错:')
 
 
 if __name__ == '__main__':
-    attfiles = ['2017-09-21CDQ.xls', '2017-09-21Boiler.xls']
+    attfiles = ['2017-10-17CDQ.xls', '2017-10-17Boiler.xls']
     sender = SendMail(u'IO TEST REPORT FORMS',
                       u'测试信息，无需回复，附件是5分钟报表，原始报表可在服务器查看',
                       attfiles,
