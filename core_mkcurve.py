@@ -60,11 +60,11 @@ class AutoMaker(object):
             print savename
             fig.savefig(savename, facecolor=fig.get_facecolor(), dpi=300, bbok_inches='tight')
             # plt.show()
-            plt.close()
+            plt.close(fig)
 
 
 if __name__ == '__main__':
     sourcefile = '2017-09-20CDQ.xls'
     label_id = [1,3,5,7,9]
-    maker = AutoMaker(sourcefile, label_id)
+    maker = AutoMaker(sourcefile, label_id,'.\\core_config.ini')
     maker.draw(title=u'项目标题')
